@@ -17,25 +17,34 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "product_feature")
+@Table(name = "product_properties")
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductFeature {
+public class ProductProperty {
 
-    @Column(name = "productFeatureId")
+    @Column(name = "property_id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long productFeatureId;
+    private Long propertyId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(name = "color")
-    private String color;
+    @Column(name = "height")
+    private float height;
 
-    @Column(name = "size")
-    private String size;
+    @Column(name = "weight")
+    private float weight;
+
+    @Column(name = "width")
+    private float width;
+
+    @Column(name = "messageOnProduct")
+    private String messageOnProduct;
+
+    @Column(name = "specialHandleRequired")
+    private boolean specialHandleRequired;
 
     @Column(name = "isEnabled")
     private boolean isEnabled;

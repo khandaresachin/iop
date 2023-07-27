@@ -17,7 +17,7 @@ public class ProductFeatureService {
         this.repository = repository;
     }
 
-    public ProductFeature getProductFeature(Integer id){
+    public ProductFeature getProductFeature(Long id){
         Optional<ProductFeature> featureOptional = repository.findById(id);
         return featureOptional.get();
     }

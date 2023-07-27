@@ -17,25 +17,22 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "product_feature")
+@Table(name = "product_composition")
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductFeature {
+public class ProductComposition {
 
-    @Column(name = "productFeatureId")
+    @Column(name = "composition_id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long productFeatureId;
+    private Long compositionId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @Column(name = "color")
-    private String color;
-
-    @Column(name = "size")
-    private String size;
+    @Column(name = "quantity")
+    private Integer quantity;
 
     @Column(name = "isEnabled")
     private boolean isEnabled;

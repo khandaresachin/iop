@@ -60,7 +60,7 @@ public class ProductService {
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
-    public ResponseEntity<Product> updateProduct(Integer productId, ProductUpdateRequest updateRequest) {
+    public ResponseEntity<Product> updateProduct(Long productId, ProductUpdateRequest updateRequest) {
         Optional<Product> existingProduct = productRepository.findById(productId);
         if (existingProduct.isEmpty()){
             throw new ProductNotFoundException(AppConstant.PRODUCT_NOT_FOUND_MSG);
