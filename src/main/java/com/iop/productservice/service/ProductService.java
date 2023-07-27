@@ -25,7 +25,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product getProduct(Integer productId) {
+    public Product getProduct(Long productId) {
         return productRepository.findByProductIdAndIsDeleted(productId, false)
                 .orElseThrow(() -> new ProductNotFoundException(AppConstant.PRODUCT_NOT_FOUND_MSG));
     }
@@ -50,7 +50,7 @@ public class ProductService {
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
-    public ResponseEntity<ResponseMessage> deleteProduct(Integer productId) {
+    public ResponseEntity<ResponseMessage> deleteProduct(Long productId) {
         Product productExist = getProduct(productId);
         productExist.setDeleted(true);
         productExist.setEnabled(false);

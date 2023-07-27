@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "product_properties")
+@Table(name = "product_property")
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductProperty {
