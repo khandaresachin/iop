@@ -6,38 +6,39 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "product")
+@Table(name = "product_feature")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class ProductFeature {
 
+    @Column(name = "productFeatureId")
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "product_id")
-    private Long productId;
-    @Column(name = "product_name")
-    private String productName;
-    @Column(name = "product_description")
-    private String productDescription;
-    @Column(name = "product_url")
-    private String productUrl;
-    @Column(name = "product_type")
-    private String productType;
-    @Column(name = "product_sub_type")
-    private String productSubType;
-    @Column(name = "is_enabled")
-    private boolean isEnabled;
-    @Column(name = "isDeleted")
-    private boolean isDeleted;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long productFeatureId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @Column(name = "color")
+    private String color;
+
+    @Column(name = "size")
+    private String size;
+
+    @Column(name = "isEnabled")
+    private boolean isEnabled;
     @Column(name = "created_by")
     private String createBy;
     @Column(name = "created_at")

@@ -38,11 +38,8 @@ public class ProductController {
      * ProductNotFoundException
      */
     @GetMapping("/{productId}")
-    public ResponseEntity<Product> getProduct(@PathVariable Integer productId) {
+    public ResponseEntity<Product> getProduct(@PathVariable Long productId) {
         Product product = productService.getProduct(productId);
-        if (product == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
@@ -62,14 +59,14 @@ public class ProductController {
 
     /**
      * API to update/patch the product with partial update to existing products information
-     * @param productId unique product id for updating the details of product
+     *
+     * @param productId     unique product id for updating the details of product
      * @param updateRequest the request consist of fields which needs to be updated
      * @return updated product information along with HTTP Status code
      */
     @PatchMapping("/{productId}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Integer productId,
-                                                 @RequestBody ProductUpdateRequest updateRequest)
-    {
+    public ResponseEntity<Product> updateProduct(@PathVariable Long productId,
+                                                 @RequestBody ProductUpdateRequest updateRequest) {
         return productService.updateProduct(productId, updateRequest);
     }
 
@@ -82,7 +79,7 @@ public class ProductController {
      */
     @DeleteMapping("/{productId}")
     public ResponseEntity<ResponseMessage> deleteProduct(
-            @PathVariable Integer productId) {
+            @PathVariable Long productId) {
         return productService.deleteProduct(productId);
     }
 
