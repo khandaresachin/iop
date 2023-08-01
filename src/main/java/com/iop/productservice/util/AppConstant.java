@@ -8,4 +8,5 @@ public class AppConstant {
     public static final String COMPOSITION_NOT_FOUND = "Composition not found";
     public static final String PRODUCT_PROPERTY_NOT_FOUND = "Product property not found";
     public static final String PRODUCT_FEATURE_NOT_FOUND = "Product feature not found";
+    public static final String COMPONENT_NOT_FOUND = "Component not found";
 }
