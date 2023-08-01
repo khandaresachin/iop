@@ -9,38 +9,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "product_composition")
+@Table(name = "component")
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductComposition implements Serializable {
+public class Component implements Serializable {
 
-    @Column(name = "composition_id")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long compositionId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "component_id")
+    private Long componentId;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    @Column(name = "component_name")
+    private String componentName;
 
-    @OneToOne
-    @JoinColumn(name = "component_id")
-    private Component component;
+    @Column(name = "component_type")
+    private String componentType;
 
-    @Column(name = "quantity")
-    private Integer quantity;
-
-    @Column(name = "isEnabled")
+    @Column(name = "is_enabled")
     private boolean isEnabled;
+
     @Column(name = "created_by")
     private String createBy;
     @Column(name = "created_at")
@@ -49,4 +42,5 @@ public class ProductComposition implements Serializable {
     private String modifiedBy;
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
+
 }
