@@ -41,4 +41,10 @@ public class ComponentService {
         }
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
+
+    public ResponseEntity<String> deleteComponent(Long componentId) {
+        getComponent(componentId);
+        repository.deleteById(componentId);
+        return new ResponseEntity<>(AppConstant.COMPONENT_DELETED_SUCCESSFULLY, HttpStatus.OK);
+    }
 }
