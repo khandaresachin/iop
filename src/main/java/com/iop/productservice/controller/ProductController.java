@@ -5,6 +5,8 @@ import com.iop.productservice.dto.ProductUpdateRequest;
 import com.iop.productservice.dto.ResponseMessage;
 import com.iop.productservice.entity.Product;
 import com.iop.productservice.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,8 @@ import javax.validation.Valid;
 @RequestMapping("/v1/products")
 public class ProductController {
 
+    Logger logger = LoggerFactory.getLogger(ProductController.class);
+
     ProductService productService;
 
     @Autowired
@@ -39,6 +43,7 @@ public class ProductController {
      */
     @GetMapping("/{productId}")
     public ResponseEntity<Product> getProduct(@PathVariable Long productId) {
+        logger.info("Get product request for productId : {} ", productId);
         Product product = productService.getProduct(productId);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
@@ -54,6 +59,7 @@ public class ProductController {
     public ResponseEntity<Product> createProduct(
             @RequestBody @Valid ProductRequest productRequest
     ) {
+        logger.info("Create product request ");
         return productService.createProduct(productRequest);
     }
 
@@ -67,6 +73,7 @@ public class ProductController {
     @PatchMapping("/{productId}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long productId,
                                                  @RequestBody ProductUpdateRequest updateRequest) {
+        logger.info("Update product request for productId : {}", productId);
         return productService.updateProduct(productId, updateRequest);
     }
 
@@ -80,6 +87,7 @@ public class ProductController {
     @DeleteMapping("/{productId}")
     public ResponseEntity<ResponseMessage> deleteProduct(
             @PathVariable Long productId) {
+        logger.info("Delete product request for productId :{}", productId);
         return productService.deleteProduct(productId);
     }
 
