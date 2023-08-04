@@ -5,6 +5,8 @@ import com.iop.productservice.entity.Component;
 import com.iop.productservice.exception.ComponentNotFoundException;
 import com.iop.productservice.repository.ComponentRepository;
 import com.iop.productservice.util.AppConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,7 @@ import java.time.LocalDateTime;
 
 @Service
 public class ComponentService {
-
+    Logger logger = LoggerFactory.getLogger(ComponentService.class);
     private ComponentRepository repository;
 
     @Autowired
@@ -40,5 +42,12 @@ public class ComponentService {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(created, HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<String> deleteComponent(Long componentId) {
+        logger.info("Delete component request for :  {}  ", componentId);
+        getComponent(componentId);
+        repository.deleteById(componentId);
+        return new ResponseEntity<>(AppConstant.COMPONENT_DELETED_SUCCESSFULLY, HttpStatus.OK);
     }
 }
