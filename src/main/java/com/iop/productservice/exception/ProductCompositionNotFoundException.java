@@ -1,10 +1,14 @@
 package com.iop.productservice.exception;
 
-public class ProductCompositionNotFoundException extends RuntimeException{
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-    private static final long serialVersionUID =1L;
+public class ProductCompositionNotFoundException extends RuntimeException {
+    Logger logger = LoggerFactory.getLogger(ProductCompositionNotFoundException.class);
 
-    public ProductCompositionNotFoundException(String message){
+    private static final long serialVersionUID = 1L;
+
+    public ProductCompositionNotFoundException(String message) {
         super(message);
     }
 }

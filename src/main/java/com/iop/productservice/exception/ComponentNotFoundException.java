@@ -1,10 +1,16 @@
 package com.iop.productservice.exception;
 
-public class ComponentNotFoundException extends RuntimeException{
+import org.slf4j.LoggerFactory;
 
-    private static final long serialVersionUID =1L;
+import java.util.logging.Logger;
 
-    public ComponentNotFoundException(String message){
+public class ComponentNotFoundException extends RuntimeException {
+    Logger logger = (Logger) LoggerFactory.getLogger(ComponentNotFoundException.class);
+
+
+    private static final long serialVersionUID = 1L;
+
+    public ComponentNotFoundException(String message) {
         super(message);
     }
 }

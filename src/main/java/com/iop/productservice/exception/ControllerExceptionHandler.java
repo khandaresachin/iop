@@ -1,5 +1,7 @@
 package com.iop.productservice.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -11,6 +13,7 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
+    Logger logger= LoggerFactory.getLogger(ProductFeatureNotFoundException.class);
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<ErrorMessage> productNotFoundException(

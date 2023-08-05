@@ -7,6 +7,7 @@ import com.iop.productservice.entity.Product;
 import com.iop.productservice.exception.ProductNotFoundException;
 import com.iop.productservice.repository.ProductRepository;
 import com.iop.productservice.util.AppConstant;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +15,11 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class ProductService {
-
+    Logger logger = (Logger) LoggerFactory.getLogger(ProductService.class);
     ProductRepository productRepository;
 
     @Autowired
@@ -62,27 +64,27 @@ public class ProductService {
 
     public ResponseEntity<Product> updateProduct(Long productId, ProductUpdateRequest updateRequest) {
         Optional<Product> existingProduct = productRepository.findById(productId);
-        if (existingProduct.isEmpty()){
+        if (existingProduct.isEmpty()) {
             throw new ProductNotFoundException(AppConstant.PRODUCT_NOT_FOUND_MSG);
         }
         Product updateProduct = existingProduct.get();
-        if(updateRequest.getProductName() != null){
+        if (updateRequest.getProductName() != null) {
             updateProduct.setProductName(updateRequest.getProductName());
         }
-        if(updateRequest.getProductDescription() != null){
+        if (updateRequest.getProductDescription() != null) {
             updateProduct.setProductDescription(updateRequest.getProductDescription());
         }
-        if(updateRequest.getProductUrl() != null){
+        if (updateRequest.getProductUrl() != null) {
             updateProduct.setProductUrl(updateRequest.getProductUrl());
         }
-        if(updateRequest.getProductType() != null){
+        if (updateRequest.getProductType() != null) {
             updateProduct.setProductType(updateRequest.getProductType());
         }
-        if(updateRequest.getProductSubType() != null){
+        if (updateRequest.getProductSubType() != null) {
             updateProduct.setProductSubType(updateRequest.getProductSubType());
         }
 
-        if(updateProduct.isDeleted()){
+        if (updateProduct.isDeleted()) {
             updateProduct.setDeleted(updateRequest.isDeleted());
         }
 

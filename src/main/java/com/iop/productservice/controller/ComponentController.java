@@ -3,6 +3,8 @@ package com.iop.productservice.controller;
 import com.iop.productservice.dto.ComponentRequest;
 import com.iop.productservice.entity.Component;
 import com.iop.productservice.service.ComponentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1/components")
 public class ComponentController {
+    Logger logger = LoggerFactory.getLogger(ComponentController.class);
 
     private ComponentService service;
 
@@ -45,6 +48,7 @@ public class ComponentController {
     public ResponseEntity<String> deleteComponent(
             @PathVariable Long componentId
     ) {
+        logger.info("Delete product request for productId :{} ",componentId);
         return service.deleteComponent(componentId);
 
     }

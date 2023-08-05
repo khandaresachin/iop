@@ -3,6 +3,7 @@ package com.iop.productservice.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.logging.Logger;
 
 @Data
 @Entity
@@ -19,7 +21,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Component implements Serializable {
-
+    Logger logger = (Logger) LoggerFactory.getLogger(Component.class);
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "component_id")
