@@ -87,7 +87,7 @@ public class ProductController {
     @DeleteMapping("/{productId}")
     public ResponseEntity<ResponseMessage> deleteProduct(
             @PathVariable Long productId) {
-        logger.info("Delete product request for productId :{}", productId);
+        logger.info("Delete product request for productId:{}", productId);
         return productService.deleteProduct(productId);
     }
 

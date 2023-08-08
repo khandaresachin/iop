@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
-    Logger logger= LoggerFactory.getLogger(ProductFeatureNotFoundException.class);
+    Logger logger = LoggerFactory.getLogger(ControllerExceptionHandler.class);
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<ErrorMessage> productNotFoundException(
             ProductNotFoundException ex, WebRequest webRequest
-    ){
+    ) {
         ErrorMessage message = new ErrorMessage(
                 HttpStatus.NOT_FOUND.value(),
                 LocalDateTime.now(),
@@ -32,7 +32,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorMessage> methodArgumentNotValid(
             MethodArgumentNotValidException ex, WebRequest webRequest
-    ){
+    ) {
         ErrorMessage message = new ErrorMessage(
                 HttpStatus.BAD_REQUEST.value(),
                 LocalDateTime.now(),

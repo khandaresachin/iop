@@ -26,7 +26,7 @@ public class ProductService {
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-
+    
     public Product getProduct(Long productId) {
         return productRepository.findByProductIdAndIsDeleted(productId, false)
                 .orElseThrow(() -> new ProductNotFoundException(AppConstant.PRODUCT_NOT_FOUND_MSG));

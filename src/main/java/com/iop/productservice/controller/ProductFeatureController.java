@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1/products/features")
 public class ProductFeatureController {
-    Logger logger = LoggerFactory.getLogger(ProductCompositionController.class);
+    Logger logger = LoggerFactory.getLogger(ProductFeatureController.class);
     private ProductFeatureService service;
 
     @Autowired

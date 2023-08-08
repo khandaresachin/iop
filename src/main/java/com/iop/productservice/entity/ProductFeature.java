@@ -3,7 +3,6 @@ package com.iop.productservice.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.slf4j.LoggerFactory;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
-import java.util.logging.Logger;
 
 @Data
 @Entity
@@ -23,7 +21,6 @@ import java.util.logging.Logger;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductFeature {
-    Logger logger = (Logger) LoggerFactory.getLogger(ProductFeature.class);
     @Column(name = "productFeatureId")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

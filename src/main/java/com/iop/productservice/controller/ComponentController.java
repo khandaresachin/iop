@@ -48,7 +48,7 @@ public class ComponentController {
     public ResponseEntity<String> deleteComponent(
             @PathVariable Long componentId
     ) {
-        logger.info("Delete product request for productId :{} ",componentId);
+        logger.info("Delete product request for productId :{} ", componentId);
         return service.deleteComponent(componentId);
 
     }

@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductProperty {
-    Logger logger = (Logger) LoggerFactory.getLogger(ProductComposition.class);
+    Logger logger = (Logger) LoggerFactory.getLogger(ProductProperty.class);
 
     @Column(name = "property_id")
     @Id
