@@ -25,6 +25,12 @@ public class ComponentController {
         this.service = service;
     }
 
+    /**
+     * This API is used to create a component
+     *
+     * @param request Component create request
+     * @return the created component with HttpStatus
+     */
     @PostMapping
     public ResponseEntity<Component> createComponent(
             @RequestBody ComponentRequest request
@@ -32,6 +38,12 @@ public class ComponentController {
         return service.createComponent(request);
     }
 
+    /**
+     * This API is used to get component using componentId
+     *
+     * @param componentId unique id for component
+     * @return the component details with HttpStatus
+     */
     @GetMapping("{componentId}")
     public ResponseEntity<Component> getComponent(
             @PathVariable Long componentId
@@ -41,6 +53,12 @@ public class ComponentController {
 
     }
 
+    /**
+     * This API is used to delete component using componentId
+     *
+     * @param componentId unique id for component
+     * @return message with HttpStatus
+     */
     @DeleteMapping("{componentId}")
     public ResponseEntity<String> deleteComponent(
             @PathVariable Long componentId
