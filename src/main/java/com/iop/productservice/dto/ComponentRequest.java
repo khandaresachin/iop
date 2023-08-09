@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class ComponentRequest {
 
+
     private String componentName;
 
     private String componentType;

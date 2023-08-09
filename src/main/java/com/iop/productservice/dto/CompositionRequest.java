@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CompositionRequest {
 
+
     private Long productId;
 
     private Long componentId;

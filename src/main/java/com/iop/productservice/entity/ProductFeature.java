@@ -21,7 +21,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductFeature {
-
     @Column(name = "productFeatureId")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

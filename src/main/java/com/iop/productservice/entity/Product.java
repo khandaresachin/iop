@@ -3,6 +3,8 @@ package com.iop.productservice.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +20,7 @@ import java.time.LocalDateTime;
 @Table(name = "product")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product  implements Serializable {
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

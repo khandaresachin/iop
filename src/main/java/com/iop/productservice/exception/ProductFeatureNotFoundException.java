@@ -1,10 +1,14 @@
 package com.iop.productservice.exception;
 
-public class ProductFeatureNotFoundException extends RuntimeException{
+import org.slf4j.LoggerFactory;
 
-    private static final long serialVersionUID =1L;
+import java.util.logging.Logger;
 
-    public ProductFeatureNotFoundException(String message){
+public class ProductFeatureNotFoundException extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
+
+    public ProductFeatureNotFoundException(String message) {
         super(message);
     }
 }
