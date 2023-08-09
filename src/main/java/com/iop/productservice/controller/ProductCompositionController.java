@@ -27,6 +27,12 @@ public class ProductCompositionController {
         this.service = service;
     }
 
+    /**
+     * This API is used to get product composition
+     *
+     * @param compositionId unique id for product composition
+     * @return product composition with HttpStatus
+     */
     @GetMapping("/{compositionId}")
     public ResponseEntity<ProductComposition> getProductComposition(
             @PathVariable Long compositionId) {
@@ -34,6 +40,12 @@ public class ProductCompositionController {
         return new ResponseEntity<>(composition, HttpStatus.OK);
     }
 
+    /**
+     * This API is used to create composition
+     *
+     * @param request create composition request
+     * @return product composition with HttpStatus
+     */
     @PostMapping
     public ResponseEntity<ProductComposition> createComposition(
             @RequestBody CompositionRequest request

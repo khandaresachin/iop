@@ -24,6 +24,12 @@ public class ProductFeatureController {
         this.service = service;
     }
 
+    /**
+     * This API is used to get product feature
+     *
+     * @param productFeatureId unique id for product feature
+     * @return product feature details with HttpStatus
+     */
     @GetMapping("/{productFeatureId}")
     public ResponseEntity<ProductFeature> getProductFeature(
             @PathVariable Long productFeatureId) {

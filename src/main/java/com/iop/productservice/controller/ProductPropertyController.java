@@ -25,6 +25,12 @@ public class ProductPropertyController {
         this.service = service;
     }
 
+    /**
+     * This API is used to get product property details
+     *
+     * @param propertyId unique id for product property
+     * @return product property details with HttpStatus
+     */
     @GetMapping("/{propertyId}")
     public ResponseEntity<ProductProperty> getProductProperty(
 
