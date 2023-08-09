@@ -1,5 +1,6 @@
 package com.iop.productservice.controller;
 
+import com.iop.productservice.dto.ProductFeatureRequest;
 import com.iop.productservice.entity.ProductFeature;
 import com.iop.productservice.service.ProductFeatureService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,5 +34,11 @@ public class ProductFeatureController {
             @PathVariable Long productFeatureId) {
         ProductFeature productFeature = service.getProductFeature(productFeatureId);
         return new ResponseEntity<>(productFeature, HttpStatus.OK);
+    }
+
+    public ResponseEntity<ProductFeature> createProductFeature(
+            @RequestBody ProductFeatureRequest request
+            ){
+        return service.createProductFeature(request);
     }
 }
