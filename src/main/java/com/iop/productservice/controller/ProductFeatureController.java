@@ -1,5 +1,6 @@
 package com.iop.productservice.controller;
 
+import com.iop.productservice.dto.ProductFeatureRequest;
 import com.iop.productservice.entity.ProductFeature;
 import com.iop.productservice.service.ProductFeatureService;
 import org.slf4j.ILoggerFactory;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,5 +39,12 @@ public class ProductFeatureController {
         logger.info("Delete request for productFeatureId :{} ",productFeatureId);
         ProductFeature productFeature = service.getProductFeature(productFeatureId);
         return new ResponseEntity<>(productFeature, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<ProductFeature> createProductFeature(
+            @RequestBody ProductFeatureRequest request
+            ){
+        return service.createProductFeature(request);
     }
 }
