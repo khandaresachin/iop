@@ -7,17 +7,18 @@ import com.iop.productservice.entity.ProductComposition;
 import com.iop.productservice.exception.ProductCompositionNotFoundException;
 import com.iop.productservice.repository.ProductCompositionRepository;
 import com.iop.productservice.util.AppConstant;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.logging.Logger;
+import java.time.LocalDateTime;
 
 @Service
 public class ProductCompositionService {
-    Logger logger = (Logger) LoggerFactory.getLogger(ProductCompositionService.class);
+    Logger logger = LoggerFactory.getLogger(ProductCompositionService.class);
     private ProductCompositionRepository repository;
     private ProductService productService;
     private ComponentService componentService;
@@ -49,6 +50,8 @@ public class ProductCompositionService {
             composition.setComponent(component);
             composition.setQuantity(request.getQuantity());
             composition.setEnabled(request.getIsEnabled());
+            composition.setCreateBy(AppConstant.USER_NAME_FOR_DB_AUDIT);
+            composition.setCreatedAt(LocalDateTime.now());
             created = repository.save(composition);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

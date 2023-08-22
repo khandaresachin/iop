@@ -7,6 +7,7 @@ import com.iop.productservice.entity.Product;
 import com.iop.productservice.exception.ProductNotFoundException;
 import com.iop.productservice.repository.ProductRepository;
 import com.iop.productservice.util.AppConstant;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,18 +16,17 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @Service
 public class ProductService {
-    Logger logger = (Logger) LoggerFactory.getLogger(ProductService.class);
+    Logger logger = LoggerFactory.getLogger(ProductService.class);
     ProductRepository productRepository;
 
     @Autowired
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-    
+
     public Product getProduct(Long productId) {
         return productRepository.findByProductIdAndIsDeleted(productId, false)
                 .orElseThrow(() -> new ProductNotFoundException(AppConstant.PRODUCT_NOT_FOUND_MSG));
