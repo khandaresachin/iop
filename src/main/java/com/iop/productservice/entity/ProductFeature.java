@@ -6,13 +6,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
@@ -20,13 +20,13 @@ import java.time.LocalDateTime;
 @Table(name = "product_feature")
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductFeature {
+public class ProductFeature implements Serializable {
     @Column(name = "productFeatureId")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long productFeatureId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 

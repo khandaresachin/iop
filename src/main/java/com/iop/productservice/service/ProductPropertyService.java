@@ -4,15 +4,15 @@ import com.iop.productservice.entity.ProductProperty;
 import com.iop.productservice.exception.ProductPropertyNotFoundException;
 import com.iop.productservice.repository.ProductPropertyRepository;
 import com.iop.productservice.util.AppConstant;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.logging.Logger;
 
 @Service
 public class ProductPropertyService {
-    Logger logger = (Logger) LoggerFactory.getLogger(ProductPropertyService.class);
+    Logger logger = LoggerFactory.getLogger(ProductPropertyService.class);
     private ProductPropertyRepository repository;
 
     @Autowired
