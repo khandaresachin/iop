@@ -52,7 +52,7 @@ public class ProductFeatureService {
 
     public ResponseEntity<ResponseMessage> deleteProductFeature(Long productFeatureId) {
         logger.info("Delete request for product feature");
-        ProductFeature feature = getProductFeature(productFeatureId);
+        getProductFeature(productFeatureId);
         //Hard core delete implementation for product feature
         repository.deleteById(productFeatureId);
         ResponseMessage responseMessage = new ResponseMessage();

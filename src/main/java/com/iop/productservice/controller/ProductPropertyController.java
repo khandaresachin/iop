@@ -56,7 +56,7 @@ public class ProductPropertyController {
     }
 
     @DeleteMapping("/{propertyId}")
-    public ResponseEntity<ResponseMessage> deleteproductProperty(
+    public ResponseEntity<ResponseMessage> deleteProductProperty(
             @PathVariable Long propertyId
     ) {
         logger.info("Request to delete product property fot id :{}", propertyId);
