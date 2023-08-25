@@ -1,6 +1,7 @@
 package com.iop.productservice.controller;
 
 import com.iop.productservice.dto.ProductPropertyRequest;
+import com.iop.productservice.dto.ProductPropertyUpdate;
 import com.iop.productservice.dto.ResponseMessage;
 import com.iop.productservice.entity.ProductProperty;
 import com.iop.productservice.service.ProductPropertyService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,16 +47,42 @@ public class ProductPropertyController {
         return new ResponseEntity<>(productProperty, HttpStatus.OK);
     }
 
+    /**
+     * Create product property
+     *
+     * @param request create product property
+     * @return created product property
+     */
     @PostMapping
     public ResponseEntity<ProductProperty> createProductProperty(
             @RequestBody ProductPropertyRequest request
     ) {
         logger.info("request to create product property ");
         return service.createProductProperty(request);
-
-
     }
 
+    /**
+     * Update product property
+     *
+     * @param propertyId unique id for product property
+     * @param request    update product property
+     * @return updated product property
+     */
+    @PutMapping("/{propertyId}")
+    public ResponseEntity<ProductProperty> updateProductProperty(
+            @PathVariable Long propertyId,
+            @RequestBody ProductPropertyUpdate request
+    ) {
+        logger.info("Product property update request for id :{}", propertyId);
+        return service.updateProductProperty(propertyId, request);
+    }
+
+    /**
+     * Delete product property
+     *
+     * @param propertyId unique id for product property
+     * @return Response message after delete
+     */
     @DeleteMapping("/{propertyId}")
     public ResponseEntity<ResponseMessage> deleteProductProperty(
             @PathVariable Long propertyId

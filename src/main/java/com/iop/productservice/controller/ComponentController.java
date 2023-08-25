@@ -1,6 +1,7 @@
 package com.iop.productservice.controller;
 
 import com.iop.productservice.dto.ComponentRequest;
+import com.iop.productservice.dto.ComponentUpdate;
 import com.iop.productservice.entity.Component;
 import com.iop.productservice.service.ComponentService;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +30,22 @@ public class ComponentController {
         this.service = service;
     }
 
+
+    /**
+     * This API is used to get component using componentId
+     *
+     * @param componentId unique id for component
+     * @return the component details with HttpStatus
+     */
+    @GetMapping("/{componentId}")
+    public ResponseEntity<Component> getComponent(
+            @PathVariable Long componentId
+    ) {
+        Component component = service.getComponent(componentId);
+        return new ResponseEntity<>(component, HttpStatus.OK);
+
+    }
+
     /**
      * This API is used to create a component
      *
@@ -42,18 +60,19 @@ public class ComponentController {
     }
 
     /**
-     * This API is used to get component using componentId
+     * Update component implementation
      *
      * @param componentId unique id for component
-     * @return the component details with HttpStatus
+     * @param request     component update fields
+     * @return updated component details
      */
-    @GetMapping("{componentId}")
-    public ResponseEntity<Component> getComponent(
-            @PathVariable Long componentId
+    @PutMapping("/{componentId}")
+    public ResponseEntity<Component> updateComponent(
+            @PathVariable Long componentId,
+            @RequestBody ComponentUpdate request
     ) {
-        Component component = service.getComponent(componentId);
-        return new ResponseEntity<>(component, HttpStatus.OK);
-
+        logger.info("Component update request for id :{}", componentId);
+        return service.updateComponent(componentId, request);
     }
 
     /**
@@ -62,7 +81,7 @@ public class ComponentController {
      * @param componentId unique id for component
      * @return message with HttpStatus
      */
-    @DeleteMapping("{componentId}")
+    @DeleteMapping("/{componentId}")
     public ResponseEntity<String> deleteComponent(
             @PathVariable Long componentId
     ) {
@@ -70,4 +89,5 @@ public class ComponentController {
         return service.deleteComponent(componentId);
 
     }
+
 }

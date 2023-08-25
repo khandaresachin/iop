@@ -1,6 +1,7 @@
 package com.iop.productservice.service;
 
 import com.iop.productservice.dto.ComponentRequest;
+import com.iop.productservice.dto.ComponentUpdate;
 import com.iop.productservice.entity.Component;
 import com.iop.productservice.exception.ComponentNotFoundException;
 import com.iop.productservice.repository.ComponentRepository;
@@ -49,5 +50,18 @@ public class ComponentService {
         getComponent(componentId);
         repository.deleteById(componentId);
         return new ResponseEntity<>(AppConstant.COMPONENT_DELETED_SUCCESSFULLY, HttpStatus.OK);
+    }
+
+    public ResponseEntity<Component> updateComponent(Long componentId, ComponentUpdate request) {
+
+        logger.info("Update component request");
+        Component component = getComponent(componentId);
+        component.setComponentName(request.getComponentName());
+        component.setComponentType(request.getComponentType());
+        component.setEnabled(request.isEnabled());
+        component.setModifiedBy(AppConstant.USER_NAME_FOR_DB_AUDIT);
+        component.setModifiedAt(LocalDateTime.now());
+
+        return new ResponseEntity<>(repository.save(component), HttpStatus.ACCEPTED);
     }
 }

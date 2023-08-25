@@ -1,6 +1,7 @@
 package com.iop.productservice.service;
 
 import com.iop.productservice.dto.ProductPropertyRequest;
+import com.iop.productservice.dto.ProductPropertyUpdate;
 import com.iop.productservice.dto.ResponseMessage;
 import com.iop.productservice.entity.Product;
 import com.iop.productservice.entity.ProductProperty;
@@ -65,5 +66,20 @@ public class ProductPropertyService {
         ResponseMessage responseMessage = new ResponseMessage();
         responseMessage.setMessage(AppConstant.PRODUCT_PROPERTY_DELETED_SUCCESSFULLY);
         return new ResponseEntity<>(responseMessage, HttpStatus.OK);
+    }
+
+    public ResponseEntity<ProductProperty> updateProductProperty(Long propertyId, ProductPropertyUpdate request) {
+        logger.info("Product property update request");
+        ProductProperty productProperty = getProductProperty(propertyId);
+        productProperty.setHeight(request.getHeight());
+        productProperty.setWeight(request.getWeight());
+        productProperty.setWidth(request.getWidth());
+        productProperty.setMessageOnProduct(request.getMessageOnProduct());
+        productProperty.setSpecialHandleRequired(request.isSpecialHandleRequired());
+        productProperty.setEnabled(request.isEnabled());
+
+        productProperty.setModifiedBy(AppConstant.USER_NAME_FOR_DB_AUDIT);
+        productProperty.setModifiedAt(LocalDateTime.now());
+        return new ResponseEntity<>(repository.save(productProperty), HttpStatus.ACCEPTED);
     }
 }
