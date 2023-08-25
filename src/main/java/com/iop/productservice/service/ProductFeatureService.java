@@ -1,6 +1,7 @@
 package com.iop.productservice.service;
 
 import com.iop.productservice.dto.ProductFeatureRequest;
+import com.iop.productservice.dto.ProductFeatureUpdate;
 import com.iop.productservice.dto.ResponseMessage;
 import com.iop.productservice.entity.Product;
 import com.iop.productservice.entity.ProductFeature;
@@ -52,11 +53,23 @@ public class ProductFeatureService {
 
     public ResponseEntity<ResponseMessage> deleteProductFeature(Long productFeatureId) {
         logger.info("Delete request for product feature");
-        ProductFeature feature = getProductFeature(productFeatureId);
+        getProductFeature(productFeatureId);
         //Hard core delete implementation for product feature
         repository.deleteById(productFeatureId);
         ResponseMessage responseMessage = new ResponseMessage();
         responseMessage.setMessage(AppConstant.PRODUCT_FEATURE_DELETED_SUCCESSFULLY);
         return new ResponseEntity<>(responseMessage, HttpStatus.OK);
+    }
+
+    public ResponseEntity<ProductFeature> updateProductFeature(Long productFeatureId, ProductFeatureUpdate request) {
+        logger.info("Product feature update request");
+        ProductFeature productFeature = getProductFeature(productFeatureId);
+        productFeature.setColor(request.getColor());
+        productFeature.setSize(request.getSize());
+        productFeature.setEnabled(request.isEnabled());
+        productFeature.setModifiedBy(AppConstant.USER_NAME_FOR_DB_AUDIT);
+        productFeature.setModifiedAt(LocalDateTime.now());
+
+        return new ResponseEntity<>(repository.save(productFeature), HttpStatus.ACCEPTED);
     }
 }

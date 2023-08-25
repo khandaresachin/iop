@@ -1,6 +1,8 @@
 package com.iop.productservice.service;
 
 import com.iop.productservice.dto.CompositionRequest;
+import com.iop.productservice.dto.ProductCompositionUpdate;
+import com.iop.productservice.dto.ResponseMessage;
 import com.iop.productservice.entity.Component;
 import com.iop.productservice.entity.Product;
 import com.iop.productservice.entity.ProductComposition;
@@ -57,5 +59,24 @@ public class ProductCompositionService {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(created, HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<ResponseMessage> deleteComposition(Long compositionId) {
+        getComposition(compositionId);
+        repository.deleteById(compositionId);
+        ResponseMessage responseMessage = new ResponseMessage();
+        responseMessage.setMessage(AppConstant.PRODUCT_COMPOSITION_DELETED_SUCCESSFULLY);
+        return new ResponseEntity<>(responseMessage, HttpStatus.OK);
+    }
+
+    public ResponseEntity<ProductComposition> updateProductComposition(Long compositionId, ProductCompositionUpdate request) {
+        logger.info("Update Product Composition request");
+        ProductComposition productComposition = getComposition(compositionId);
+        productComposition.setQuantity(request.getQuantity());
+        productComposition.setEnabled(request.isEnabled());
+        productComposition.setModifiedBy(AppConstant.USER_NAME_FOR_DB_AUDIT);
+        productComposition.setModifiedAt(LocalDateTime.now());
+
+        return new ResponseEntity<>(repository.save(productComposition), HttpStatus.ACCEPTED);
     }
 }

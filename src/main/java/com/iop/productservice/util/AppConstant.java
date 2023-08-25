@@ -11,4 +11,6 @@ public class AppConstant {
     public static final String COMPONENT_NOT_FOUND = "Component not found";
     public static final String COMPONENT_DELETED_SUCCESSFULLY = "Component deleted successfully";
     public static final String PRODUCT_FEATURE_DELETED_SUCCESSFULLY = "Product feature deleted successfully";
+    public static final String PRODUCT_PROPERTY_DELETED_SUCCESSFULLY = "Product property deleted successfully";
+    public static final String PRODUCT_COMPOSITION_DELETED_SUCCESSFULLY = "Product composition deleted successfully";
 }
